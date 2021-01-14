@@ -2,7 +2,7 @@
 
 function getPlots(id) {
   //Read samples.json
-  d3.json("samples.json").then((sampledata) => {
+  d3.json("./data/samples.json").then((sampledata) => {
     console.log(sampledata);
     var ids = sampledata.samples[0].otu_ids;
     console.log(ids);
@@ -78,7 +78,7 @@ function getPlots(id) {
 // create the function to get the necessary data
 function getDemoInfo(id) {
   // read the json file to get data
-  d3.json("samples.json").then((data) => {
+  d3.json("./data/samples.json").then((data) => {
     // get the metadata info for the demographic panel
     var metadata = data.metadata;
 
@@ -101,10 +101,10 @@ function getDemoInfo(id) {
   });
 }
 // create the function for the change event
-function optionChanged(id) {
-  getPlots(id);
-  getDemoInfo(id);
-}
+// function optionChanged(id) {
+//   getPlots(id);
+//   getDemoInfo(id);
+// }
 
 // create the function for the initial data rendering
 function init() {
@@ -112,8 +112,8 @@ function init() {
   var dropdown = d3.select("#selDataset");
 
   // read the data
-  d3.json("samples.json").then((data) => {
-    console.log(data);
+  d3.json("./data/samples.json").then((data) => {
+    //console.log(data);
 
     // get the id data to the dropdwown menu
     data.names.forEach(function (name) {
@@ -121,6 +121,7 @@ function init() {
     });
 
     // call the functions to display the data and the plots to the page
+    console.log(data.names[0]);
     getPlots(data.names[0]);
     getDemoInfo(data.names[0]);
   });
